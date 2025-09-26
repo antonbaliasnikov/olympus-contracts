@@ -54,8 +54,14 @@ const config: HardhatUserConfig = {
             },
             chainId: chainIds.hardhat,
         },
+        [process.env.NETWORK_NAME || "ZKsyncOS"]: {
+          chainId: process.env.CHAIN_ID ? parseInt(process.env.CHAIN_ID) : 270,
+          url: process.env.RPC_URL || "",
+          allowUnlimitedContractSize: true,
+          accounts: [process.env.PRIVATE_KEY || ""],
+        },
         // Uncomment for testing. Commented due to CI issues
-        mainnet: getChainConfig("mainnet"),
+        // mainnet: getChainConfig("mainnet"),
         // rinkeby: getChainConfig("rinkeby"),
         // ropsten: getChainConfig("ropsten"),
     },
